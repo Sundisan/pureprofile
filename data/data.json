@@ -1,0 +1,46 @@
+{
+  "basicInfo": {
+    "client": "Cottee`s",
+    "lastUpdate": "25 June 2015",
+    "range": {
+      "from": "January",
+      "to": "June"
+    }
+  },
+  "sampleDescription": {
+    "respondents": 90,
+    "eliminates": 6,
+    "flatliners": 2,
+    "inconsistency": 4,
+    "completes": 96
+  },
+  "measures": {
+    "attention": 5, "brandBonding": 9
+  },
+  "impactRanking": [
+    {
+      "serviceName": "Product Service",
+      "item": "Cordial",
+      "percentage":100,
+      "ads":37
+    },
+    {
+      "serviceName": "Brand Service",
+      "item": "Cottee`s",
+      "percentage":72,
+      "ads":15
+    },
+    {
+      "serviceName": "Country",
+      "item":"Australia",
+      "percentage":55,
+      "ads":1437
+    },
+    {
+      "serviceName": "Category",
+      "item": "Cold drinks",
+      "percentage":55,
+      "ads": 324
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="dashboardApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leo - 0405 400 452</title>
+
+    <link href="./css/main.css" type="text/css" rel="stylesheet">
+    <link href="./css/header.css" type="text/css" rel="stylesheet">
+    <link href="./css/client.css" type="text/css" rel="stylesheet">
+    <link href="./css/diagram.css" type="text/css" rel="stylesheet">
+    <script src="./js/jquery-1.11.3.js"></script>
+    <script src="./js/angular.min.js"></script>
+    <script>
+        var dashboard = angular.module("dashboardApp", []);
+        var initInfoCtrl = dashboard.controller("initInfoCtrl", function($scope, $http) {
+            $http.get("./data/data.json").success(function(data){
+                $scope.basicInfo = data.basicInfo;
+                $scope.sampleDescription = data.sampleDescription;
+
+                /* diagram 1 */
+                var rightPie = angular.element('.pie-chart .semicircle-right-inner');
+
+                var attentionDeg = data.measures.attention > 10 ? "180deg" : (180 - data.measures.attention * 18) + "deg";
+                var brandBondingDeg = data.measures.brandBonding > 10 ? "180deg" : (data.measures.brandBonding * 18) + "deg";
+
+                angular.element('.pie-chart .semicircle-left').attr('data-attr', data.measures.attention + '.0');
+                angular.element('.pie-chart .semicircle-left-inner').css("transform","rotate(" + attentionDeg + ")");
+
+                angular.element('.pie-chart .semicircle-right').attr('data-attr', data.measures.brandBonding + '.0');
+                angular.element('.pie-chart .semicircle-right-inner').css("transform","rotate(" + brandBondingDeg + ")");
+
+                /* diagram 2 */
+                $scope.impactRanking = data.impactRanking;
+
+            });
+        });
+    </script>
+</head>
+<body>
+    <header class="header">
+        <span class="app"></span>
+        <span class="func"></span>
+    </header>
+
+    <hr style="border: 2px solid #D7D7D8">
+    <div id="container" ng-controller="initInfoCtrl">
+        <div class="client-cottee">
+            <span class="client-info">
+                <h1>{{basicInfo.client}} Dashboard</h1>
+                <hr class="splitter">
+                <span class="client-info-last-update"><img src="./images/refresh.png" class="client-info-img">Last updated: {{basicInfo.lastUpdate}}</span>
+                <span><img src="./images/calendar.png" class="client-info-img">Viewing data for: {{basicInfo.range.from}} - {{basicInfo.range.to}}</span>
+            </span>
+            <span class="client-products">
+                <img src="./images/product-1.png" class="product-1">
+                <img src="./images/product-2.png" class="product-2">
+                <img src="./images/product-3.png" class="product-3">
+            </span>
+        </div>
+        <div class="diagram-container">
+            <div class="right">
+                <div class="basic-data">
+                    <h1>{{basicInfo.client}}<button class="btn filter-btn">ALL FILTERS</button></h1>
+                    <hr class="splitter">
+                    <h3>Sample Description about this brand here</h3>
+                    <div class="content-table">
+                        <div class="table-row">
+                            <div class="table-cell">Valid respondents:</div>
+                            <div class="table-cell">Eliminates:</div>
+                            <div class="table-cell">Flatliners:</div>
+                            <div class="table-cell">Inconsistency:</div>
+                            <div class="table-cell">Completes:</div>
+                        </div>
+                        <div style="display: table-row">
+                            <div class="table-cell table-cell-style">{{sampleDescription.respondents}}</div>
+                            <div class="table-cell table-cell-style">{{sampleDescription.eliminates}}</div>
+                            <div class="table-cell table-cell-style">{{sampleDescription.flatliners}}</div>
+                            <div class="table-cell table-cell-style">{{sampleDescription.inconsistency}}</div>
+                            <div class="table-cell table-cell-style-special">{{sampleDescription.completes}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="diagram-1">
+                    <h1>
+                        Key Effective Ad measures
+                        <span class="btn-container">
+                            <button class="btn filter-btn">CHART FILTERS</button>
+                            <button class="btn export-btn">EXPORT</button>
+                        </span>
+                    </h1>
+                    <hr class="splitter">
+                    <div class="pie-chart-container">
+                        <div class="pie-chart pie-margin-right">
+                            <div style="height:200px;overflow: hidden;position: relative">
+                                <div class="semicircle semicircle-left"></div>
+                                <div class="semicircle semicircle-left-inner"></div>
+                            </div>
+                            <span class="label-left">0</span>
+                            <span class="label-right">10</span>
+                            <h3 class="description-h3">Attention</h3>
+                            <h4 class="description-h4">Will your ad get noticed?</h4>
+                        </div>
+
+                        <div class="pie-chart pie-margin-left">
+                            <div style="height:200px;overflow: hidden;position: relative">
+                                <div class="semicircle semicircle-right"></div>
+                                <div class="semicircle semicircle-right-inner"></div>
+                            </div>
+
+                            <span class="label-left">0</span>
+                            <span class="label-right">10</span>
+                            <h3 class="description-h3">Brand Bonding</h3>
+                            <h4 class="description-h4">How does the ad make viewers feel about the brand?</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="diagram-2">
+                    <h1>
+                        Add + Impact Ranking <button class="btn filter-btn">CHART FILTERS</button>
+                    </h1>
+                    <hr class="splitter">
+                    <p class="description">
+                        When comparing this ad to the add+impact&reg; global database a tick indicates that this ad is in the
+                        <br> top quartile of ads for that category.
+                    </p>
+                    <div class="bar-chart">
+                        <div class="chart-rows">
+                            <div class="row-padding" ng-repeat="row in impactRanking">
+                                <span class="row-description">
+                                    <span>{{row.serviceName}}</span><br><span>{{row.item}}({{row.ads}} ads)</span>
+                                </span><span class="x-bar" style="background: {{row.percentage > 70 ? '#DA4133' : '#2B3178'}}; padding-right:{{row.percentage * 10}}px;"></span>
+                            </div>
+                        </div>
+                        <span class="y-bar-container">
+                            <span class="y-bar y-bar-position"></span>
+                            <span class="y-bar y-bar-position"></span><span class="y-bar y-bar-position"></span>
+                            <span class="y-bar y-bar-position"></span><span class="y-bar y-bar-position"></span>
+                            <span class="y-bar y-bar-position"></span><span class="y-bar y-bar-position"></span>
+                            <span class="y-bar y-bar-position"></span><span class="y-bar y-bar-position"></span>
+                            <span class="y-bar y-bar-position"></span><span class="y-bar y-bar-position"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

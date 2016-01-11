@@ -1,0 +1,62 @@
+.client-cottee {
+    background: #F4F0ED url("../images/cottee_s_log.png") no-repeat 1% center;
+    background-size: 8% 90%;
+    width: 100%;
+    height: 230px;
+    position: relative;
+}
+.client-info {
+    position:absolute;
+    top: 20%;
+    left:10%;
+    width:550px;
+}
+.client-info h1 {
+    font-size: 40px;
+}
+.client-info hr {
+    width: 15%; border: 1px solid #DF5B4E; margin-top:12%; margin-bottom:6%;
+}
+.client-info-last-update {
+    margin-right: 30px;
+}
+.client-info-img {
+    padding-right: 10px;
+}
+.client-products {
+    display: table-cell;
+    width: 30%;
+    height: auto;
+    float:right;
+}
+@media only screen and (max-width: 768px) {
+    .client-info {
+        text-align: center;
+        width:100%;
+    }
+    .client-info h1 {
+        font-size: 20px;
+    }
+    .client-info-last-update {
+        display: block;
+    }
+    .client-products {
+        display: none;
+    }
+}
+.product-1 {
+    width: 25%;
+    margin-right:-20px;
+    vertical-align: middle;
+}
+.product-2 {
+    min-width: 90px;
+    width: 1%;
+    vertical-align: middle;
+}
+.product-3 {
+    min-width: 79px;
+    margin-left:-15px;
+    vertical-align: middle;
+    width: 3.5%;
+}

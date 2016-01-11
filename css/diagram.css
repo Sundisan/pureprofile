@@ -1,0 +1,195 @@
+.diagram-container {
+    float: right; width:100%; background-color: #414B50;
+}
+.diagram-container .right {
+    width:90%;
+    float:right;
+    background-color: #FFFFFF;
+}
+.basic-data, .diagram-1, .diagram-2 {
+    border-bottom: 1px solid #D7D7D7;
+    border-top: 1px solid #D7D7D7;
+    width: 95%;
+    margin: 10px auto;
+    padding-top: 2%
+}
+.diagram-1 {
+    border-top: 0;
+}
+.diagram-2 {
+    border: none;
+}
+
+.basic-data .content-table {
+    display: table;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+.basic-data .content-table .table-row {
+    display: table-row;
+}
+.basic-data .content-table .table-cell {
+    display: table-cell;
+    padding-right: 60px;
+}
+.table-cell-style {
+    color: #646464;
+    font-weight: bolder;
+    font-size: 18px;
+}
+.table-cell-style-special {
+    color: red;
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+.diagram-1 .pie-chart-container {
+    text-align: center;margin-top: 5%;
+}
+.pie-margin-right {
+    margin-right: 5%;
+}
+
+.pie-margin-left {
+    margin-left: 5%;
+}
+.pie-chart-container .pie-chart {
+    overflow: hidden; height:400px;width: 400px;display:inline-block;
+}
+.pie-chart .label-left {
+    float:left; font-size: 1.2em; color: black; margin-top:10px;margin-left:30px;
+}
+.pie-chart .label-right {
+    float:right;font-size: 1.2em; color: black; margin-top:10px;margin-right:30px;
+}
+.pie-chart .description-h3 {
+    margin-top:50px; color:#000000;
+}
+.pie-chart .description-h4 {
+    margin-top:10px;
+}
+.semicircle {
+    position: relative;
+    height: 200px;
+    width: 400px;
+    border-radius: 200px 200px 0 0;
+    transform-origin: 200px 200px;
+}
+.semicircle-right {
+    margin-top:1px;
+    overflow: hidden;
+    background: #2B3178;
+}
+.semicircle-left {
+    margin-top:1px;
+    overflow: hidden;
+    background: #DA4133;
+}
+.semicircle-right-inner {
+    background: #ECECEC;
+    transform: rotate(40deg);
+    top: -1px;
+    z-index: 1;
+    position: absolute;
+    -webkit-transition: transform 2s;
+    -moz-transition: transform 2s;
+    -ms-transition: transform 2s;
+    -o-transition: transform 2s;
+    transition: transform 2s;
+}
+.semicircle-left-inner {
+    background: #ECECEC;
+    transform: rotate(60deg);
+    top: -1px;
+    z-index: 1;
+    position: absolute;
+    -webkit-transition: transform 2s;
+    -moz-transition: transform 2s;
+    -ms-transition: transform 2s;
+    -o-transition: transform 2s;
+    transition: transform 2s;
+}
+.pie-chart .semicircle-left::after{
+    content: attr(data-attr);
+    z-index: 2;
+    transform-origin: 120px 120px;
+    font-size: 50px;
+    line-height: 200px;
+    color: #404483;
+    position: absolute;
+    left: 80px;
+    top: 80px;
+    width: 240px;
+    height: 122px;
+    border-radius: 121px 121px 0 0;
+    background: #FFFFFF;
+}
+.pie-chart .semicircle-right::after {
+    content: attr(data-attr);
+    z-index: 2;
+    transform-origin: 120px 120px;
+    font-size: 50px;
+    line-height: 200px;
+    color: #404483;
+    position: absolute;
+    left: 80px;
+    top: 80px;
+    width: 240px;
+    height: 122px;
+    border-radius: 121px 121px 0 0;
+    background: #FFFFFF;
+}
+
+.diagram-2 .description{
+    font-size: 16px; padding-left: 20px; margin-bottom: 80px;line-height: 1.8em;
+}
+
+.diagram-2 .bar-chart {
+    margin-left: 20px;display: table; border-collapse: collapse; position: relative;
+}
+.diagram-2 .chart-rows {
+    display: table-cell; position: absolute; z-index: 2; top:15px;
+}
+.chart-rows .row-description {
+    display: inline-block; margin-right:15px; width:150px;vertical-align: middle;
+}
+.chart-rows .row-padding {
+    padding-bottom: 35px;
+}
+.chart-rows .x-bar {
+    vertical-align: middle;
+    background-color: #2B3178;
+    display: inline-block;
+    height: 40px;
+    width: 0;
+}
+.bar-chart .y-bar-container {
+    display: table;
+    margin-left: 165px;
+    margin-bottom: 30px;
+}
+.y-bar-container .y-bar {
+    display: table-cell;
+    width: 0;
+    padding-right: 99px;
+    border-left: 1px solid #CBCBCB;
+    vertical-align: bottom;
+    height: 300px;
+    position:relative;
+}
+.y-bar-position:after {
+    padding-top: 10px;
+    position: absolute;
+    left: -15px;
+}
+.y-bar:nth-of-type(1):after  { content: "0%";  }
+.y-bar:nth-of-type(2):after  { content: "10%"; }
+.y-bar:nth-of-type(3):after  { content: "20%"; }
+.y-bar:nth-of-type(4):after  { content: "30%"; }
+.y-bar:nth-of-type(5):after  { content: "40%"; }
+.y-bar:nth-of-type(6):after  { content: "50%"; }
+.y-bar:nth-of-type(7):after  { content: "60%"; }
+.y-bar:nth-of-type(8):after  { content: "70%"; }
+.y-bar:nth-of-type(9):after  { content: "80%"; }
+.y-bar:nth-of-type(10):after { content: "90%"; }
+.y-bar:nth-of-type(11):after { content: "100%";}
